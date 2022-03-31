@@ -143,3 +143,70 @@ CONTAINER ID   IMAGE          COMMAND                  CREATED        STATUS    
 ```
 
 ### Steps 6-7 - View HTML file with nginx
+
+- Create HTML demo file:
+
+```#!/bin/bash
+C:\Users\basti\Documents\Git-Repos\Cloud-Native-Computing-INM1>more E:\Downloads\html_test\index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello from Docker!</h1>
+</body>
+</html>
+```
+
+- Start an nginx container and link the file into it
+
+```#!/bin/bash
+basti@BASTIAN-RTX2080 MINGW64 ~/Documents/Git-Repos/Cloud-Native-Computing-INM1 (main)
+$ docker run -d --name nginxhtmlfiledemo -p 9090:80 -v E:/Downloads/html_test:/usr/share/nginx/html --rm  nginx
+0ef47ab648530bc21be649dbc3a5ab425074760f83e79bbd1e746ab66a77c1a1
+```
+
+- Check if file is served correctly
+
+```#!/bin/bash
+basti@BASTIAN-RTX2080 MINGW64 ~/Documents/Git-Repos/Cloud-Native-Computing-INM1 (main)
+$ curl localhost:9090
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello from Docker!</h1>
+</body>
+</html>
+```
+
+- Browser Screenshot:
+
+![Screenshot from Browser](html_file_from_docker.jpg)
+
+### Step 8 - Delete the container
+
+- Stop and delete the running container:
+
+```#!/bin/bash
+basti@BASTIAN-RTX2080 MINGW64 ~/Documents/Git-Repos/Cloud-Native-Computing-INM1 (main)
+$ docker stop nginxhtmlfiledemo
+nginxhtmlfiledemo
+```
+
+- Verify with `docker ps`
+
+```#!/bin/bash
+basti@BASTIAN-RTX2080 MINGW64 ~/Documents/Git-Repos/Cloud-Native-Computing-INM1 (main)
+$ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+```
