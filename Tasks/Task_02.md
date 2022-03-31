@@ -121,3 +121,25 @@ $ curl localhost:9090 | grep address
 100  7218    0  7218    0     0   507k      0 --:--:-- --:--:-- --:--:--  542k
 <p><span>Server&nbsp;address:</span> <span>172.17.0.2:80</span></p>
 ```
+
+### Step 5 - Stop and delete the container
+
+```#!/bin/bash
+basti@BASTIAN-RTX2080 MINGW64 ~/Documents/Git-Repos/Cloud-Native-Computing-INM1 (main)
+$ docker stop nginxdemo
+nginxdemo
+
+basti@BASTIAN-RTX2080 MINGW64 ~/Documents/Git-Repos/Cloud-Native-Computing-INM1 (main)
+$ docker rm nginxdemo
+nginxdemo
+```
+
+- Verify that the container is no longer there:
+
+```#!/bin/bash
+basti@BASTIAN-RTX2080 MINGW64 ~/Documents/Git-Repos/Cloud-Native-Computing-INM1 (main)
+$ docker container ls -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED        STATUS                      PORTS     NAMES
+```
+
+### Steps 6-7 - View HTML file with nginx
