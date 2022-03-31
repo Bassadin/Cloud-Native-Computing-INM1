@@ -7,7 +7,7 @@
 - Run command `docker pull ubuntu` in Windows Terminal shell
 - Output:
 
-```#!/bin/bash
+```bash
 PS C:\Users\basti> docker pull ubuntu
 Using default tag: latest
 latest: Pulling from library/ubuntu
@@ -19,7 +19,7 @@ docker.io/library/ubuntu:latest
 
 - Start with docker CLI:
 
-```#!/bin/bash
+```bash
 PS C:\Users\basti> docker run -it ubuntu
 root@e444b39028b9:/# echo "Cloud-Native Computing"
 Cloud-Native Computing
@@ -30,7 +30,7 @@ root@e444b39028b9:/#
 
 - Start container again two times:
 
-```#!/bin/bash
+```bash
 PS C:\Users\basti> docker run -it --name ubuntu_1 ubuntu
 root@6e2d45684a25:/# echo "Hello from ubuntu_1"
 Hello from ubuntu_1
@@ -48,7 +48,7 @@ exit
 
 - Get their logs:
 
-```#!/bin/bash
+```bash
 PS C:\Users\basti> docker logs ubuntu_1
 root@6e2d45684a25:/# echo "Hello from ubuntu_1"
 Hello from ubuntu_1
@@ -66,7 +66,7 @@ exit
 
 - Show containers:
 
-```#!/bin/bash
+```bash
 PS C:\Users\basti> docker container ls --all
 CONTAINER ID   IMAGE          COMMAND                  CREATED              STATUS                          PORTS     NAMES
 c8c33e025e34   ubuntu         "bash"                   About a minute ago   Exited (0) About a minute ago             ubuntu_2
@@ -75,7 +75,7 @@ c8c33e025e34   ubuntu         "bash"                   About a minute ago   Exit
 
 - Delete them:
 
-```#!/bin/bash
+```bash
 PS C:\Users\basti> docker rm c8c33e025e34 6e2d45684a25
 c8c33e025e34
 6e2d45684a25
@@ -85,7 +85,7 @@ c8c33e025e34
 
 - Pull the image:
 
-```#!/bin/bash
+```bash
 C:\Users\basti\Documents\Git-Repos\Cloud-Native-Computing-INM1>docker pull nginxdemos/hello
 Using default tag: latest
 latest: Pulling from nginxdemos/hello
@@ -105,7 +105,7 @@ docker.io/nginxdemos/hello:latest
 
 - Start it with a forwarded port and name
 
-```#!/bin/bash
+```bash
 basti@BASTIAN-RTX2080 MINGW64 ~/Documents/Git-Repos/Cloud-Native-Computing-INM1 (main)
 $ docker run -d --name nginxdemo -p 9090:80 nginxdemos/hello
 9142dfba2a6fdc73de2b09eae0dffbc754ce1ac4c43843a28092dfc4633db352
@@ -113,7 +113,7 @@ $ docker run -d --name nginxdemo -p 9090:80 nginxdemos/hello
 
 - Get the server address:
 
-```#!/bin/bash
+```bash
 basti@BASTIAN-RTX2080 MINGW64 ~/Documents/Git-Repos/Cloud-Native-Computing-INM1 (main)
 $ curl localhost:9090 | grep address
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
@@ -124,7 +124,7 @@ $ curl localhost:9090 | grep address
 
 ### Step 5 - Stop and delete the container
 
-```#!/bin/bash
+```bash
 basti@BASTIAN-RTX2080 MINGW64 ~/Documents/Git-Repos/Cloud-Native-Computing-INM1 (main)
 $ docker stop nginxdemo
 nginxdemo
@@ -136,7 +136,7 @@ nginxdemo
 
 - Verify that the container is no longer there:
 
-```#!/bin/bash
+```bash
 basti@BASTIAN-RTX2080 MINGW64 ~/Documents/Git-Repos/Cloud-Native-Computing-INM1 (main)
 $ docker container ls -a
 CONTAINER ID   IMAGE          COMMAND                  CREATED        STATUS                      PORTS     NAMES
@@ -146,7 +146,7 @@ CONTAINER ID   IMAGE          COMMAND                  CREATED        STATUS    
 
 - Create HTML demo file:
 
-```#!/bin/bash
+```bash
 C:\Users\basti\Documents\Git-Repos\Cloud-Native-Computing-INM1>more E:\Downloads\html_test\index.html
 <!DOCTYPE html>
 <html lang="en">
@@ -164,7 +164,7 @@ C:\Users\basti\Documents\Git-Repos\Cloud-Native-Computing-INM1>more E:\Downloads
 
 - Start an nginx container and link the file into it
 
-```#!/bin/bash
+```bash
 basti@BASTIAN-RTX2080 MINGW64 ~/Documents/Git-Repos/Cloud-Native-Computing-INM1 (main)
 $ docker run -d --name nginxhtmlfiledemo -p 9090:80 -v E:/Downloads/html_test:/usr/share/nginx/html --rm  nginx
 0ef47ab648530bc21be649dbc3a5ab425074760f83e79bbd1e746ab66a77c1a1
@@ -172,7 +172,7 @@ $ docker run -d --name nginxhtmlfiledemo -p 9090:80 -v E:/Downloads/html_test:/u
 
 - Check if file is served correctly
 
-```#!/bin/bash
+```bash
 basti@BASTIAN-RTX2080 MINGW64 ~/Documents/Git-Repos/Cloud-Native-Computing-INM1 (main)
 $ curl localhost:9090
 <!DOCTYPE html>
@@ -197,7 +197,7 @@ $ curl localhost:9090
 
 - Stop and delete the running container:
 
-```#!/bin/bash
+```bash
 basti@BASTIAN-RTX2080 MINGW64 ~/Documents/Git-Repos/Cloud-Native-Computing-INM1 (main)
 $ docker stop nginxhtmlfiledemo
 nginxhtmlfiledemo
@@ -205,7 +205,7 @@ nginxhtmlfiledemo
 
 - Verify with `docker ps`
 
-```#!/bin/bash
+```bash
 basti@BASTIAN-RTX2080 MINGW64 ~/Documents/Git-Repos/Cloud-Native-Computing-INM1 (main)
 $ docker ps
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
