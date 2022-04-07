@@ -36,6 +36,8 @@ ENTRYPOINT ["figlet", "-f", "slant"]
 
 ### Step 2 - Dockerizing the webservice
 
+- Login to HFU docker registry: `docker login -u hodappba docker.informatik.hs-furtwangen.de`
+- Use password prompt to authenticate (should probably use SSH key later?)
 - Create Dockerfile for web service:
 
 ```dockerfile
@@ -54,4 +56,23 @@ RUN npm run build
 EXPOSE 443
 
 CMD npm run start
+```
+
+- Build docker image with a name/tag: `docker build -t cnc-webservice .`
+- Tag the newly created image to be uploaded to the HFU registry `docker image tag hodappba:webservice docker.informatik.hs-furtwangen.de/cnc-hodappba/cnc-webservice`
+- Push the image: `docker image push docker.informatik.hs-furtwangen.de/cnc-hodappba/cnc-webservice`
+
+### Step 3 - Check if available in the repo
+
+- The image seems to have been successfully uploaded to the repository (<https://repo.informatik.hs-furtwangen.de/#browse/browse:docker.hosted:v2%2Fcnc-hodappba%2Fcnc-webservice>)
+
+### Step 4 - Use the image from the registry
+
+- Try to start the image directly from the repo: `docker run -d --name webservice-from-repo -p 8080:443 docker.informatik.hs-furtwangen.de/cnc-hodappba/cnc-webservice`
+- Try to call it:
+
+```bash
+basti@BASTIAN-RTX2080 MINGW64 ~/Documents/Git-Repos/Cloud-Native-Computing-INM1 (main)
+$ curl localhost:8080
+Hello World from Node REST server!
 ```
