@@ -6,7 +6,7 @@ WORKDIR /usr/src/app
 
 # Our precious app
 COPY . .
-RUN npm install
+RUN npm ci
 RUN npm run build
 
 #Expose needed ports
