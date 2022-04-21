@@ -59,7 +59,7 @@ CMD npm run start
 ```
 
 - Build docker image with a name/tag: `docker build -t cnc-webservice .`
-- Tag the newly created image to be uploaded to the HFU registry `docker image tag hodappba:webservice docker.informatik.hs-furtwangen.de/cnc-hodappba/cnc-webservice`
+- Tag the newly created image to be uploaded to the HFU registry `docker image tag cnc-webservice docker.informatik.hs-furtwangen.de/cnc-hodappba/cnc-webservice`
 - Push the image: `docker image push docker.informatik.hs-furtwangen.de/cnc-hodappba/cnc-webservice`
 
 ### Step 3 - Check if available in the repo
