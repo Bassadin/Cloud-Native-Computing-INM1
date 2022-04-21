@@ -137,6 +137,7 @@ spec:
 ### Step 5 - create endpoints for liveness/readiness checks
 
 - I'm using `terminus` for the liveness/readiness checks here: <https://github.com/godaddy/terminus>
+  - I'm not quite satisfied with how this package works but I'll see if I can find any replacements in the future
 - New `pod.yaml`:
 
 ```yaml
