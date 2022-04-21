@@ -1,4 +1,6 @@
+import http from "http";
 import express from "express";
+import { createTerminus } from "@godaddy/terminus";
 
 //dotenv
 require("dotenv").config();
@@ -14,6 +16,31 @@ app.get("/", (request, response) => {
 //#endregion Routes
 
 // start the Express server
-app.listen(port, () => {
+app.listen(() => {
     console.log(`server started at http://localhost:${port}`);
 });
+
+const server = http.createServer(app);
+
+function readinessCheck() {
+    
+    return Promise.resolve();
+}
+
+function livenessCheck() {
+    // check for stuff like db connection later
+    return Promise.resolve();
+}
+
+createTerminus(server, {
+    // healtcheck options
+    healthChecks: {
+        "/_health/liveness": livenessCheck,
+        "/_health/readiness": readinessCheck,
+    },
+
+    // cleanup options
+    timeout: 1000,
+});
+
+server.listen(port);
