@@ -136,5 +136,51 @@ spec:
 
 ### Step 5 - create endpoints for liveness/readiness checks
 
-- I'm using `lightship` for the liveness/readiness checks here: <https://github.com/gajus/lightship>
-- 
+- I'm using `terminus` for the liveness/readiness checks here: <https://github.com/godaddy/terminus>
+- New `pod.yaml`:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+    name: service-hodappba
+spec:
+    containers:
+        - name: api-service
+          image: docker.informatik.hs-furtwangen.de/cnc-hodappba/cnc-webservice
+          resources:
+              requests:
+                  memory: "32Mi"
+              limits:
+                  memory: "256Mi"
+          readinessProbe:
+              httpGet:
+                  path: /_health/readiness
+                  port: 443
+          livenessProbe:
+              httpGet:
+                  path: /_health/liveness
+                  port: 443
+
+```
+
+```bash
+basti@BASTIAN-RTX2080 MINGW64 ~/Documents/Git-Repos/Cloud-Native-Computing-INM1 (main)
+$ kubectl describe pod service-hodappba
+...
+    Liveness:     http-get http://:443/_health/liveness delay=0s timeout=1s period=10s #success=1 #failure=3
+    Readiness:    http-get http://:443/_health/readiness delay=0s timeout=1s period=10s #success=1 #failure=3
+...
+```
+
+### Step 6 - Port forwarding
+
+```bash
+basti@BASTIAN-RTX2080 MINGW64 ~/Documents/Git-Repos/Cloud-Native-Computing-INM1 (main)
+$ kubectl port-forward service-hodappba 34000:443
+Forwarding from 127.0.0.1:34000 -> 443
+Forwarding from [::1]:34000 -> 443
+Handling connection for 34000
+Handling connection for 34000
+Handling connection for 34000
+```
