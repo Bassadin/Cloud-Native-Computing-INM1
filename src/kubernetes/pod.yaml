@@ -11,3 +11,11 @@ spec:
                   memory: "32Mi"
               limits:
                   memory: "256Mi"
+          readinessProbe:
+              httpGet:
+                  path: /_health/readiness
+                  port: 443
+          livenessProbe:
+              httpGet:
+                  path: /_health/liveness
+                  port: 443
