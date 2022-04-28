@@ -55,3 +55,15 @@ service-hodappba-559fbbb856-zjqvg      1/1     Running            0             
 
 ### Step 4 - Service
 
+- Define service file `src/kubernetes/service.yaml`
+- I needed to change the target port to 443 because I expose that one in my Dockerfile
+- Port forward works:
+
+```bash
+basti@BASTIAN-RTX2080 MINGW64 ~/Documents/Git-Repos/Cloud-Native-Computing-INM1 (main)
+$ curl localhost:8080/hodappba/
+Hello World from Node REST server!
+basti@BASTIAN-RTX2080 MINGW64 ~/Documents/Git-Repos/Cloud-Native-Computing-INM1 (main)
+$ curl localhost:8080/hodappba/host
+The hostname is: service-hodappba-559fbbb856-7cnkv
+```
