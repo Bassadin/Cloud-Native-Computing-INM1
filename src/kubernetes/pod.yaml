@@ -13,9 +13,9 @@ spec:
                   memory: "256Mi"
           readinessProbe:
               httpGet:
-                  path: /_health/readiness
+                  path: "/hodappba/_health/readiness"
                   port: 443
           livenessProbe:
               httpGet:
-                  path: /_health/liveness
+                  path: "/hodappba/_health/liveness"
                   port: 443

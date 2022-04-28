@@ -44,8 +44,8 @@ function livenessCheck() {
 createTerminus(server, {
     // healtcheck options
     healthChecks: {
-        "/_health/liveness": livenessCheck,
-        "/_health/readiness": readinessCheck,
+        "/hodappba/_health/liveness": livenessCheck,
+        "/hodappba/_health/readiness": readinessCheck,
     },
 
     // cleanup options
