@@ -1,5 +1,5 @@
 import http from "http";
-import express from "express";
+import express = require("express");
 import { createTerminus } from "@godaddy/terminus";
 import os from "os";
 
@@ -10,13 +10,18 @@ const app = express();
 const port = process.env.PORT || 443; // default port to listen
 
 //#region Routes
-app.get("/", (request, response) => {
+
+const router = express.Router();
+
+router.get("/", (request, response) => {
     response.send(`Hello World from Node REST server!`);
 });
 
-app.get("/host", (request, response) => {
+router.get("/host", (request, response) => {
     response.send(`The hostname is: ${os.hostname()}`);
 });
+
+app.use("/hodappba", router);
 
 //#endregion Routes
 
