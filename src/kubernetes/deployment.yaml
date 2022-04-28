@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: service-hodappba
+    labels:
+        app: service
+        author: hodappba
+spec:
+    replicas: 3
+    selector:
+        matchLabels:
+            app: service
+            author: hodappba
+    template:
+        metadata:
+            labels:
+                app: service
+                author: hodappba
+        spec:
+            containers:
+                - name: api-service
+                  image: docker.informatik.hs-furtwangen.de/cnc-hodappba/cnc-webservice
+                  resources:
+                      requests:
+                          memory: "32Mi"
+                      limits:
+                          memory: "256Mi"
+                  readinessProbe:
+                      httpGet:
+                          path: "/hodappba/_health/readiness"
+                          port: 443
+                  livenessProbe:
+                      httpGet:
+                          path: "/hodappba/_health/liveness"
+                          port: 443
