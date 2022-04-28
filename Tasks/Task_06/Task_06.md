@@ -67,3 +67,36 @@ basti@BASTIAN-RTX2080 MINGW64 ~/Documents/Git-Repos/Cloud-Native-Computing-INM1 
 $ curl localhost:8080/hodappba/host
 The hostname is: service-hodappba-559fbbb856-7cnkv
 ```
+
+### Step 5 - Ingress
+
+- Create `src/kubernetes/ingress.yaml` file
+- Apply it via kukbectl
+
+```bash
+basti@BASTIAN-RTX2080 MINGW64 ~/Documents/Git-Repos/Cloud-Native-Computing-INM1 (main)
+$ kubectl get ingress | grep hodap
+ingress-hodappba   nginx   kube.informatik.hs-furtwangen.de             80      71s
+```
+
+- Call the host route (<https://kube.informatik.hs-furtwangen.de/hodappba/host>) 5 times:
+
+```bash
+basti@BASTIAN-RTX2080 MINGW64 ~/Documents/Git-Repos/Cloud-Native-Computing-INM1 (main)
+$ curl kube.informatik.hs-furtwangen.de/hodappba/host
+The hostname is: service-hodappba-559fbbb856-sf74p
+basti@BASTIAN-RTX2080 MINGW64 ~/Documents/Git-Repos/Cloud-Native-Computing-INM1 (main)
+$ curl kube.informatik.hs-furtwangen.de/hodappba/host
+The hostname is: service-hodappba-559fbbb856-zjqvg
+basti@BASTIAN-RTX2080 MINGW64 ~/Documents/Git-Repos/Cloud-Native-Computing-INM1 (main)
+$ curl kube.informatik.hs-furtwangen.de/hodappba/host
+The hostname is: service-hodappba-559fbbb856-7cnkv
+basti@BASTIAN-RTX2080 MINGW64 ~/Documents/Git-Repos/Cloud-Native-Computing-INM1 (main)
+$ curl kube.informatik.hs-furtwangen.de/hodappba/host
+The hostname is: service-hodappba-559fbbb856-zjqvg
+basti@BASTIAN-RTX2080 MINGW64 ~/Documents/Git-Repos/Cloud-Native-Computing-INM1 (main)
+$ curl kube.informatik.hs-furtwangen.de/hodappba/host
+The hostname is: service-hodappba-559fbbb856-7cnkv
+```
+
+- As expected, the requests get load balanced to the different pod replicas

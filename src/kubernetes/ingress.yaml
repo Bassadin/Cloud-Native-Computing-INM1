@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: ingress-hodappba
+    labels:
+        app: ingress
+        author: hodappba
+spec:
+    rules:
+        - host: kube.informatik.hs-furtwangen.de
+          http:
+              paths:
+                  - pathType: Prefix
+                    path: "/hodappba"
+                    backend:
+                        service:
+                            name: service-hodappba
+                            port:
+                                number: 80
