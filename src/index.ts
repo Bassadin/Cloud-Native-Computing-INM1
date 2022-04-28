@@ -1,6 +1,7 @@
 import http from "http";
 import express from "express";
 import { createTerminus } from "@godaddy/terminus";
+import os from "os";
 
 //dotenv
 require("dotenv").config();
@@ -13,6 +14,10 @@ app.get("/", (request, response) => {
     response.send(`Hello World from Node REST server!`);
 });
 
+app.get("/host", (request, response) => {
+    response.send(`The hostname is: ${os.hostname()}`);
+});
+
 //#endregion Routes
 
 // start the Express server
@@ -23,7 +28,6 @@ app.listen(() => {
 const server = http.createServer(app);
 
 function readinessCheck() {
-    
     return Promise.resolve();
 }
 
