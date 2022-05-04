@@ -2,12 +2,18 @@ import http from "http";
 import express = require("express");
 import { createTerminus } from "@godaddy/terminus";
 import os from "os";
+var swStats = require("swagger-stats");
+
+const basePath = "/hodappba";
 
 //dotenv
 require("dotenv").config();
 
 const app = express();
 const port = process.env.PORT || 443; // default port to listen
+
+const apiMetrics = require("prometheus-api-metrics");
+app.use(apiMetrics({ metricsPath: basePath + "/metrics" }));
 
 //#region Routes
 
@@ -21,7 +27,7 @@ router.get("/host", (request, response) => {
     response.send(`The hostname is: ${os.hostname()}`);
 });
 
-app.use("/hodappba", router);
+app.use(basePath, router);
 
 //#endregion Routes
 
