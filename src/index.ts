@@ -2,6 +2,7 @@ import http from "http";
 import express = require("express");
 import os from "os";
 import initHealthChecksWithServer from "./HealthChecks";
+const Prometheus = require("prom-client");
 
 const basePath = "/hodappba";
 
@@ -14,6 +15,11 @@ const port = process.env.PORT || 443; // default port to listen
 const apiMetrics = require("prometheus-api-metrics");
 app.use(apiMetrics({ metricsPath: basePath + "/metrics" }));
 
+const numberOfHostCalls = new Prometheus.Counter({
+    name: "number_of_host_calls",
+    help: "Total number of times the /host endpoint has been called",
+});
+
 //#region Routes
 
 const router = express.Router();
@@ -23,6 +29,7 @@ router.get("/", (request, response) => {
 });
 
 router.get("/host", (request, response) => {
+    numberOfHostCalls.inc();
     response.send(`The hostname is: ${os.hostname()}`);
 });
 
