@@ -11,4 +11,15 @@
 - Installed swagger-stats from npm and [used it like described here](https://swaggerstats.io/guide/#express)
 - Note: won't use swagger-stats after all since its intended use is with the OpenAPI 2.0 (swagger specification)
   - Will try promethues-api-metrics instead.
-- 
+- Rebuild image and push to registry again...
+  - `docker build docker.informatik.hs-furtwangen.de/cnc-hodappba/cnc-webservice .`
+  - `docker image push docker.informatik.hs-furtwangen.de/cnc-hodappba/cnc-webservice`
+- Shutdown old pods: `kubectl delete pods -l author=hodappba`
+
+### Step 2 - Check metrics
+
+- Not sure why we need the portfoward here, the service is still working after all: `curl https://kube.informatik.hs-furtwangen.de/hodappba/metrics` works just fine.
+
+### Step 3 - Prometheus service monitor
+
+- TODO
