@@ -3,6 +3,7 @@ import express = require("express");
 import os from "os";
 import initHealthChecksWithServer from "./HealthChecks";
 const Prometheus = require("prom-client");
+const logger = require('pino')()
 
 const basePath = "/hodappba";
 
@@ -30,6 +31,7 @@ router.get("/", (request, response) => {
 
 router.get("/host", (request, response) => {
     numberOfHostCalls.inc();
+    logger.info("Called hostname route.");
     response.send(`The hostname is: ${os.hostname()}`);
 });
 
@@ -39,11 +41,9 @@ app.use(basePath, router);
 
 // start the Express server
 app.listen(() => {
-    console.log(`server started at http://localhost:${port}`);
+    logger.info(`server started at http://localhost:${port}`);
 });
 
 const server = http.createServer(app);
-
 initHealthChecksWithServer(server);
-
 server.listen(port);
