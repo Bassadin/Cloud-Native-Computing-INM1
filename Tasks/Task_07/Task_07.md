@@ -22,4 +22,10 @@
 
 ### Step 3 - Prometheus service monitor
 
-- TODO
+- Created `src/kubernetes/servicemonitor.yaml`
+- Apply it with `kubectl apply -f`
+- Check if it's running under <https://kube.informatik.hs-furtwangen.de/prometheus/targets#pool-serviceMonitor/cnc/servicemonitor-hodappba/0>
+
+### Step 4 - Custom counter for host endpoint
+
+- 
