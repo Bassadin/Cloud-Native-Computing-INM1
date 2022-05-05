@@ -43,3 +43,19 @@ router.get("/host", (request, response) => {
     response.send(`The hostname is: ${os.hostname()}`);
 });
 ```
+
+### Step 5 - Check captured metrics in Prometheus
+
+- I can view the metrics under <https://kube.informatik.hs-furtwangen.de/prometheus/graph?g0.expr=number_of_host_calls&g0.tab=0&g0.stacked=0&g0.show_exemplars=0&g0.range_input=5m>
+
+### Step 6 - Grafana Dashboard
+
+- Created new dashboard under <https://kube.informatik.hs-furtwangen.de/grafana/d/5V6Bd5_nk/cnc-hodappba?orgId=1>
+
+### Step 7 - Logging
+
+- Using [https://www.npmjs.com/package/pino](the npm package pino) for logging
+
+### Step 8 - Kibana log aggregation
+
+- I needed to use the field `msg` instead of `message` for the log display
