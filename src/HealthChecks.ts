@@ -17,7 +17,7 @@ export default function initHealthChecksWithServer(server: Server) {
             "/hodappba/_health/liveness": livenessCheck,
             "/hodappba/_health/readiness": readinessCheck,
         },
-    
+
         // cleanup options
         timeout: 1000,
     });

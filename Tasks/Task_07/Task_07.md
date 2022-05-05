@@ -43,4 +43,3 @@ router.get("/host", (request, response) => {
     response.send(`The hostname is: ${os.hostname()}`);
 });
 ```
-
