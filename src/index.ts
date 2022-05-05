@@ -2,7 +2,6 @@ import http from "http";
 import express = require("express");
 import { createTerminus } from "@godaddy/terminus";
 import os from "os";
-var swStats = require("swagger-stats");
 
 const basePath = "/hodappba";
 
