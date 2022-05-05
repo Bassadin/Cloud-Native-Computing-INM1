@@ -2,6 +2,7 @@ import http from "http";
 import express = require("express");
 import { createTerminus } from "@godaddy/terminus";
 import os from "os";
+import initHealthChecksWithServer from "./HealthChecks";
 
 const basePath = "/hodappba";
 
@@ -37,24 +38,6 @@ app.listen(() => {
 
 const server = http.createServer(app);
 
-function readinessCheck() {
-    return Promise.resolve();
-}
-
-function livenessCheck() {
-    // check for stuff like db connection later
-    return Promise.resolve();
-}
-
-createTerminus(server, {
-    // healtcheck options
-    healthChecks: {
-        "/hodappba/_health/liveness": livenessCheck,
-        "/hodappba/_health/readiness": readinessCheck,
-    },
-
-    // cleanup options
-    timeout: 1000,
-});
+initHealthChecksWithServer(server);
 
 server.listen(port);
