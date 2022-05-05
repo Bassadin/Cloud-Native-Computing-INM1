@@ -28,4 +28,19 @@
 
 ### Step 4 - Custom counter for host endpoint
 
-- 
+- Using the prom-client peer dependency of `promethues-api-metrics` to create a prometheus counter:
+
+```typescript
+const Prometheus = require("prom-client");
+...
+const numberOfHostCalls = new Prometheus.Counter({
+    name: "number_of_host_calls",
+    help: "Total number of times the /host endpoint has been called",
+});
+...
+router.get("/host", (request, response) => {
+    numberOfHostCalls.inc();
+    response.send(`The hostname is: ${os.hostname()}`);
+});
+```
+
