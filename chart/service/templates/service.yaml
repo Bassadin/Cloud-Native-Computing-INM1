@@ -1,15 +1,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-    name: service-hodappba
+    name: service-{{ .Values.author }}
     labels:
         app: service
-        author: hodappba
+        author: {{ .Values.author }}
 spec:
     selector:
         app: service
-        author: hodappba
+        author: {{ .Values.author }}
     ports:
         - name: web
-          port: 80
+          port: {{ .Values.web_port }}
           targetPort: 443

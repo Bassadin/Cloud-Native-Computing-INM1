@@ -1,19 +1,19 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-    name: ingress-hodappba
+    name: ingress-{{ .Values.author }}
     labels:
         app: ingress
-        author: hodappba
+        author: {{ .Values.author }}
 spec:
     rules:
-        - host: kube.informatik.hs-furtwangen.de
+        - host: {{ .Values.ingress_host }}
           http:
               paths:
                   - pathType: Prefix
                     path: "/hodappba"
                     backend:
                         service:
-                            name: service-hodappba
+                            name: service-{{ .Values.author }}
                             port:
                                 number: 80

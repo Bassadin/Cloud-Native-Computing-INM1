@@ -8,11 +8,13 @@
 - `kubectl delete service service-hodappba`
 - `kubectl delete ingress ingress-hodappba`
 - `kubectl delete deployment service-hodappba`
+- `kubectl delete servicemonitor servicemonitor-hodappba`
 
 ### Step 2 - Helm config
 
 - Found helm template for node.js applications: <https://github.com/tmforum-rand/nodejs-helm-chart-example>
 - Create files `Chart.yaml` and `values.yaml`
+- Fill those files as described in the presentation
 
 ### Step 3 - Install helm
 
