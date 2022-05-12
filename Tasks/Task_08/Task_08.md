@@ -41,6 +41,14 @@ Hello World from Node REST server!
 
 - Sweet, that was seamless :)
 
-### Step 5 - Jenkins
+### Step 5 and 6 - Jenkins
 
 - Create `Jenkinsfile`
+- Skip this for now, too complicated without jib
+- Maybe i'll try it with gitlab ci/cd later
+
+### Step 7 and 8 - Skaffold
+
+- Install skaffold with `choco install skaffold`
+- Create `skaffold.yaml`
+- Change the default jib example to docker builder
