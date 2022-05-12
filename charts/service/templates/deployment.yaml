@@ -6,7 +6,7 @@ metadata:
         app: service
         author: {{ .Values.author }}
 spec:
-    replicas: 3
+    replicas: {{ .Values.replicaCount }}
     selector:
         matchLabels:
             app: service
@@ -19,7 +19,7 @@ spec:
         spec:
             containers:
                 - name: api-service
-                  image: {{ .Values.image }}:{{ .Chart.AppVersion }}
+                  image: {{ .Values.image }}
                   resources:
                       requests:
                           memory: "32Mi"
