@@ -19,3 +19,28 @@
 ### Step 3 - Install helm
 
 - Install helm with `choco install kubernetes-helm`
+
+### Step 4 - Install helm package
+
+```bash
+basti@BASTIAN-RTX2080 MINGW64 ~/Documents/Git-Repos/Cloud-Native-Computing-INM1 (main)
+$ helm install service-hodappba charts/service
+NAME: service-hodappba
+LAST DEPLOYED: Thu May 12 09:06:43 2022
+NAMESPACE: cnc
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+```
+
+```bash
+basti@BASTIAN-RTX2080 MINGW64 ~/Documents/Git-Repos/Cloud-Native-Computing-INM1 (main)
+$ curl kube.informatik.hs-furtwangen.de/hodappba
+Hello World from Node REST server!
+```
+
+- Sweet, that was seamless :)
+
+### Step 5 - Jenkins
+
+- Create `Jenkinsfile`
