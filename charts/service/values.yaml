@@ -3,3 +3,18 @@ image: docker.informatik.hs-furtwangen.de/cnc-hodappba/cnc-webservice
 author: hodappba
 web_port: 80
 ingress_host: kube.informatik.hs-furtwangen.de
+mongodb:
+    podLabels:
+    author: hodappba
+    extraFlags:
+        - "--wiredTigerEngineConfigString=log=(prealloc=false,file_max=20MB)"
+        - "--setParameter diagnosticDataCollectionEnabled=false"
+    auth:
+        enabled: false
+    persistence:
+        size: 256Mi
+    resources:
+        limits:
+            memory: 256Mi
+        requests:
+            memory: 256Mi

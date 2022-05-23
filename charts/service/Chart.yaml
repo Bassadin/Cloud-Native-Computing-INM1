@@ -3,3 +3,7 @@ name: service-hodappba
 version: 0.1.0
 appVersion: "latest"
 description: Helm Chart for a basic node.js api service
+dependencies:
+  - name: mongodb
+    version: 10.1.3
+    repository: https://charts.bitnami.com/bitnami

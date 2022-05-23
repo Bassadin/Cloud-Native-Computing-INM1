@@ -20,6 +20,9 @@ spec:
             containers:
                 - name: api-service
                   image: {{ .Values.image }}
+                  env:
+                      - name: MONGODB_HOST
+                        value: mongodb://service-{{ .Values.author }}-mongodb
                   resources:
                       requests:
                           memory: "32Mi"
