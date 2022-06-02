@@ -29,7 +29,7 @@ let userCollection: Collection;
 // const messageQueue = MessageQueue.getInstance();
 
 // Database Name
-async function main() {
+async function connectToDB() {
     // Use connect method to connect to the server
     await client.connect();
     logger.info("Connected successfully to database server");
@@ -37,7 +37,7 @@ async function main() {
     userCollection = db.collection("users");
 }
 
-main()
+connectToDB()
     .then((e) => logger.info(e))
     .catch((e) => logger.error(e));
 
