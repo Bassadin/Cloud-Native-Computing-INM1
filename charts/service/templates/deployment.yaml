@@ -23,6 +23,8 @@ spec:
                   env:
                       - name: MONGODB_HOST
                         value: mongodb://service-{{ .Values.author }}-mongodb
+                      - name: BACKEND_HOST
+                        value: {{ .Values.backend_url }}
                   resources:
                       requests:
                           memory: "32Mi"

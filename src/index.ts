@@ -97,6 +97,18 @@ router.delete("/deleteAllUsers", (request, response) => {
     response.sendStatus(200);
 });
 
+router.get("/firstUser", (request, response) => {
+    axios.get("/users").then(async (restResponse: any) => {
+        const responseJson = await restResponse.json;
+
+        if (responseJson.length > 0) {
+            response.send(await restResponse.json[0]);
+        } else {
+            response.sendStatus(404);
+        }
+    });
+});
+
 app.use(basePath, router);
 
 //#endregion Routes
