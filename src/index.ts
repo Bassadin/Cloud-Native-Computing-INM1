@@ -24,6 +24,10 @@ const client = new MongoClient(url);
 let db: Db;
 let userCollection: Collection;
 
+//MessageQueue
+// import { MessageQueue } from "./MessageQueue";
+// const messageQueue = MessageQueue.getInstance();
+
 // Database Name
 async function main() {
     // Use connect method to connect to the server
