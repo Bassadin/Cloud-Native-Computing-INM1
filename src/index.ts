@@ -106,15 +106,20 @@ router.delete("/deleteAllUsers", (request, response) => {
 });
 
 router.get("/firstUser", (request, response) => {
-    axios.get("/users").then(async (restResponse: any) => {
-        const responseJson = await restResponse.json;
+    axios
+        .get("/users")
+        .then(async (restResponse: any) => {
+            const responseJson = await restResponse.json;
 
-        if (responseJson.length > 0) {
-            response.send(await restResponse.json[0]);
-        } else {
-            response.sendStatus(404);
-        }
-    });
+            if (responseJson.length > 0) {
+                response.send(responseJson[0]);
+            } else {
+                response.sendStatus(404);
+            }
+        })
+        .catch((err) => {
+            logger.error(err);
+        });
 });
 
 app.use(basePath, router);
