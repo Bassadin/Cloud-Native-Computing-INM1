@@ -22,6 +22,7 @@
     "homepage": "https://github.com/Bassadin/Cloud-Native-Computing-INM1#readme",
     "dependencies": {
         "@godaddy/terminus": "^4.10.2",
+        "axios": "^0.27.2",
         "dotenv": "^16.0.0",
         "express": "^4.17.3",
         "mongodb": "^4.6.0",
