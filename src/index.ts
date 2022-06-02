@@ -5,6 +5,10 @@ import initHealthChecksWithServer from "./HealthChecks";
 const Prometheus = require("prom-client");
 const logger = require("pino")();
 import bodyParser from "body-parser";
+import axios from "axios";
+
+// Axios
+axios.defaults.baseURL = process.env.BACKEND_HOST || "http://localhost:8080/hodappba";
 
 //dotenv
 require("dotenv").config();
