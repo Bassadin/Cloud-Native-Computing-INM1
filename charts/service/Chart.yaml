@@ -5,5 +5,5 @@ appVersion: "latest"
 description: Helm Chart for a basic node.js api service
 dependencies:
   - name: mongodb
-    version: 10.1.3
+    version: ^10
     repository: https://charts.bitnami.com/bitnami

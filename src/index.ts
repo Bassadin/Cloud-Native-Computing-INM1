@@ -106,10 +106,12 @@ router.delete("/deleteAllUsers", (request, response) => {
 });
 
 router.get("/firstUser", (request, response) => {
+    logger.info("Trying to get first user...");
     axios
         .get("/users")
-        .then(async (restResponse: any) => {
-            const responseJson = await restResponse.json;
+        .then((restResponse: any) => {
+            logger.info("Getting first user...");
+            const responseJson = restResponse.data;
 
             if (responseJson.length > 0) {
                 response.send(responseJson[0]);

@@ -16,4 +16,4 @@ spec:
                         service:
                             name: service-{{ .Values.author }}
                             port:
-                                number: 80
+                                number: {{ .Values.web_port }}

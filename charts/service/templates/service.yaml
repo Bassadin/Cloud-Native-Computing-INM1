@@ -12,4 +12,4 @@ spec:
     ports:
         - name: web
           port: {{ .Values.web_port }}
-          targetPort: 443
+          targetPort: {{ .Values.remote_port }}
