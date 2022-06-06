@@ -67,3 +67,5 @@ $ kubectl logs -l author=hodappba
 {"level":30,"time":1654552337750,"pid":18,"hostname":"service-hodappba-85fcfd8b86-xczzj","msg":" [x] Sent Hello world"}
 {"level":30,"time":1654552337752,"pid":18,"hostname":"service-hodappba-85fcfd8b86-xczzj","msg":" [x] Received Hello world"}
 ```
+
+- I'm not yet passing the rabbitmq domain via an environment variable, but I can still change that if needed.
