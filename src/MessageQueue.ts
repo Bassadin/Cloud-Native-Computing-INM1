@@ -21,10 +21,15 @@ export class MessageQueue {
     private initialize() {
         const logger = Logger.getInstance().getLogger();
 
-        amqp.connect("amqp://cnc:cnc@localhost:5672", (error0, connection) => {
+        amqp.connect("amqp://cnc:cnc@rabbitmq.rabbitmq:5672//cnc", (error0, connection) => {
             if (error0) {
+                logger.error(error0);
                 throw error0;
             }
+
+            logger.info("Successfully connected to RabbitMQ.");
+
+            // Producer
             connection.createChannel((error1, channel) => {
                 if (error1) {
                     throw error1;
@@ -36,10 +41,14 @@ export class MessageQueue {
                     durable: false,
                 });
 
-                channel.sendToQueue(this.queueName, Buffer.from(messageToSend));
-                logger.info(" [x] Sent %s", messageToSend);
+                // Send message every second
+                setInterval(() => {
+                    channel.sendToQueue(this.queueName, Buffer.from(messageToSend));
+                    logger.info(" [x] Sent %s", messageToSend);
+                }, 1000);
             });
 
+            // Consumer
             connection.createChannel((error1, channel) => {
                 if (error1) {
                     throw error1;
