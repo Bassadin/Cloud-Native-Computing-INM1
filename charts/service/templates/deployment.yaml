@@ -25,6 +25,8 @@ spec:
                         value: mongodb://service-{{ .Values.author }}-mongodb
                       - name: BACKEND_HOST
                         value: http://localhost:{{ .Values.remote_port }}/hodappba
+                      - name: RABBITMQ_HOST
+                        value: rabbitmq.rabbitmq  
                   resources:
                       requests:
                           memory: "32Mi"
