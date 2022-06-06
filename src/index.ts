@@ -3,9 +3,12 @@ import express = require("express");
 import os from "os";
 import initHealthChecksWithServer from "./HealthChecks";
 const Prometheus = require("prom-client");
-const logger = require("pino")();
 import bodyParser from "body-parser";
 import axios from "axios";
+import { Logger } from "./Logger";
+
+// Logger
+const logger = Logger.getInstance().getLogger();
 
 // Axios
 axios.defaults.baseURL = process.env.BACKEND_HOST || "http://localhost:8080/hodappba";
@@ -17,7 +20,6 @@ const basePath = "/hodappba";
 
 //MongoDB
 import { Collection, Db, MongoClient, ObjectId } from "mongodb";
-import User from "./User";
 // Connection URL
 const url: string = process.env.MONGODB_HOST || "";
 const client = new MongoClient(url);
@@ -25,8 +27,8 @@ let db: Db;
 let userCollection: Collection;
 
 //MessageQueue
-// import { MessageQueue } from "./MessageQueue";
-// const messageQueue = MessageQueue.getInstance();
+import { MessageQueue } from "./MessageQueue";
+const messageQueue = MessageQueue.getInstance();
 
 // Database Name
 async function connectToDB() {

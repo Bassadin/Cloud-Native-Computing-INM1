@@ -1,9 +1,10 @@
 import amqp from "amqplib/callback_api";
+import { Logger } from "./Logger";
 
 export class MessageQueue {
     private static instance: MessageQueue;
 
-    private queueName = "cnc-hodappba";
+    private queueName = "cnc.hodappba";
 
     private constructor() {
         this.initialize();
@@ -18,7 +19,9 @@ export class MessageQueue {
     }
 
     private initialize() {
-        amqp.connect("amqp://localhost:5672", (error0, connection) => {
+        const logger = Logger.getInstance().getLogger();
+
+        amqp.connect("amqp://cnc:cnc@localhost:5672", (error0, connection) => {
             if (error0) {
                 throw error0;
             }
@@ -34,7 +37,29 @@ export class MessageQueue {
                 });
 
                 channel.sendToQueue(this.queueName, Buffer.from(messageToSend));
-                console.log(" [x] Sent %s", messageToSend);
+                logger.info(" [x] Sent %s", messageToSend);
+            });
+
+            connection.createChannel((error1, channel) => {
+                if (error1) {
+                    throw error1;
+                }
+
+                channel.assertQueue(this.queueName, {
+                    durable: false,
+                });
+
+                logger.info(" [*] Waiting for messages in %s.", this.queueName);
+
+                channel.consume(
+                    this.queueName,
+                    function (msg) {
+                        logger.info(" [x] Received %s", msg!.content.toString());
+                    },
+                    {
+                        noAck: true,
+                    }
+                );
             });
         });
     }
