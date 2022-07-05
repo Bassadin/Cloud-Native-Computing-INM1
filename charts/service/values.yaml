@@ -6,7 +6,7 @@ remote_port: 443
 ingress_host: kube.informatik.hs-furtwangen.de
 mongodb:
     podLabels:
-    author: hodappba
+        author: hodappba
     extraFlags:
         - "--wiredTigerEngineConfigString=log=(prealloc=false,file_max=20MB)"
         - "--setParameter diagnosticDataCollectionEnabled=false"
